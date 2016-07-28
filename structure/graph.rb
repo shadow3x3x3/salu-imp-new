@@ -1,9 +1,11 @@
 require_relative 'util/read_util'
+require_relative 'util/output_util'
 require_relative 'edge'
 
 # Normal Graph class
 class Graph
   include ReadUtil
+  include OutputUtil
 
   attr_accessor :edges, :nodes
 
