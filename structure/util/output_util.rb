@@ -59,4 +59,23 @@ module OutputUtil
     end
     result_array
   end
+
+  def split_path_ids(target_paths)
+    target_paths.map! {|path| path.split("_")}
+    target_paths.map! do |skyline_path|
+      skyline_path.shift # shift the "path"
+      skyline_path.map(&:to_i)
+    end
+    target_paths
+  end
+
+  def sum_best_path(paths)
+    result_path = []
+    paths.each do |path|
+      result_path << path.inject(&:+)
+    end
+
+    paths[result_path.index(result_path.min)]
+  end
+
 end

@@ -50,6 +50,14 @@ TEST_SKYLINE_ARRAY = [
   ]
 ]
 
+TEST_SKYLINE_ATTR_ARRAY = [
+  [2, 6, 7, 8],
+  [1, 9, 3, 5],
+  [3, 4, 8, 7],
+  [8, 3, 2, 1],
+  [4, 2, 9, 3]
+]
+
 describe Graph do
   let(:g) { Graph.new(raw_edges: test_edges, raw_nodes: test_nodes) }
 
@@ -122,6 +130,13 @@ describe Graph do
           ])
       end
     end
+  end
 
+  describe '#sum_best_path 'do
+    context '(TEST_SKYLINE_ATTR_ARRAY)' do
+      it 'should be [8, 3, 2, 1]' do
+        expect(g.sum_best_path(TEST_SKYLINE_ATTR_ARRAY)).to match_array([8, 3, 2, 1])
+      end
+    end
   end
 end
