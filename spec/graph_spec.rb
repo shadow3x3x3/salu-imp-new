@@ -12,6 +12,44 @@ TEST_SKYLINE_ATTR_HASH = {
   e: [4, 2, 9, 3]
 }
 
+TEST_TWO_LAYER_ARRAY = [
+  ["2", "1", "7", "8", "6", "3"],
+  ["1", "9", "2", "5", "3", "7"],
+  ["3", "1", "8", "2", "3", "7"],
+  ["8", "1", "2", "6", "7", "5"]
+]
+
+TEST_SKYLINE_ARRAY = [
+  [
+    [:b, [1, 9, 3, 5]],
+    [:a, [2, 6, 7, 8]],
+    [:c, [3, 4, 8, 7]],
+    [:e, [4, 2, 9, 3]],
+    [:d, [8, 3, 2, 1]]
+  ],
+  [
+    [:e, [4, 2, 9, 3]],
+    [:d, [8, 3, 2, 1]],
+    [:c, [3, 4, 8, 7]],
+    [:a, [2, 6, 7, 8]],
+    [:b, [1, 9, 3, 5]]
+  ],
+  [
+    [:d, [8, 3, 2, 1]],
+    [:b, [1, 9, 3, 5]],
+    [:a, [2, 6, 7, 8]],
+    [:c, [3, 4, 8, 7]],
+    [:e, [4, 2, 9, 3]]
+  ],
+  [
+    [:d, [8, 3, 2, 1]],
+    [:e, [4, 2, 9, 3]],
+    [:b, [1, 9, 3, 5]],
+    [:c, [3, 4, 8, 7]],
+    [:a, [2, 6, 7, 8]]
+  ]
+]
+
 describe Graph do
   let(:g) { Graph.new(raw_edges: test_edges, raw_nodes: test_nodes) }
 
@@ -61,5 +99,29 @@ describe Graph do
           # d e b c  a
       end
     end
+  end
+
+  describe '#filter_array_top_k' do
+    context '(TEST_TWO_LAYER_ARRAY, 2)' do
+      it 'result should be 1, 2' do
+        result = g.filter_array_top_k(TEST_TWO_LAYER_ARRAY, 2)
+        expect(result).to match_array(["1", "2"])
+      end
+    end
+  end
+
+  describe '#get_skyline_path_ids' do
+    context '(TEST_SKYLINE_ARRAY)' do
+      it "should get the path" do
+        result = g.get_skyline_path_ids(TEST_SKYLINE_ARRAY)
+        expect(result).to match_array([
+            ["b", "a", "c", "e", "d"],
+            ["e", "d", "c", "a", "b"],
+            ["d", "b", "a", "c", "e"],
+            ["d", "e", "b", "c", "a"]
+          ])
+      end
+    end
+
   end
 end
