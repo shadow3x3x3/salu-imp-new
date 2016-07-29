@@ -16,4 +16,15 @@ module OutputUtil
     end
     path_id
   end
+
+  def sort_by_dim(ori_hash)
+    result_array = []
+    index = 0
+    dim   = @dim
+    dim.times do
+      result_array << ori_hash.sort_by { |key, value| value[index] }
+      index += 1
+    end
+    result_array
+  end
 end
