@@ -33,6 +33,7 @@ class SkylinePath < Graph
       end
     else
       shorest_path = shorest_path_query(src_id, dst_id)
+      raise "Can't find any road between #{src_id} and #{dst_id}"  if shorest_path.nil?
       @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
       @shorest_distance = attrs_in(shorest_path).first
       sky_path(src_id, dst_id)
@@ -117,7 +118,6 @@ class SkylinePath < Graph
     end
 
     non_skyline.each { |key| @skyline_path.delete(key) }
-
     @skyline_path[path_to_sym(pass)] = attrs if new_skyline_flag
   end
 
@@ -130,7 +130,7 @@ class SkylinePath < Graph
     return false if pass.include?(n)
     partial_result = partial_dominance?(pass + [n], next_path_attrs)
     return false if partial_result
-    add_part_skyline(pass + [n], next_path_attrs) unless partial_result.nil?
+    add_part_skyline(pass + [n], next_path_attrs)
     return false if full_dominance?(next_path_attrs)
     true
   end
@@ -157,6 +157,7 @@ class SkylinePath < Graph
 
   def add_part_skyline(path, path_attrs)
     sym = "p#{path.first}_#{path.last}".to_sym
+    return unless @part_skyline_path[sym].nil?
     @part_skyline_path[sym] = path_attrs
   end
 
