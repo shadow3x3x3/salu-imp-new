@@ -1,6 +1,38 @@
 module OutputUtil
   def output_to_txt(src, dst)
+    filter_skyline_path = if @skyline_path.size > 5
+                              split_path_ids(filter_skyline(@skyline_path))
+                            else
+                              result = split_path_ids(@skyline_path)
+                              write(src, dst, result, 'full')
+                              result
+                            end
+    sum_best_skyline_path = sum_best_path(filter_skyline_path)
 
+    write(src, dst, filter_skyline_path,   'top_5')
+    write(src, dst, sum_best_skyline_path, 'sum_best')
+  end
+
+  def write(src, dst, content, type)
+    File.open("../output/#{type}_#{src}to#{dst}_#{@distance_limit}_limit_result.txt", "w") do |f|
+      if type == 'sum_best'
+        sp_id_array = path_to_id(content)
+
+        sp_id_array.each_with_index do |id, index|
+          f.write("\"id\" = #{id}")
+          index == sp_id_array.size - 1 ? f.write("\n") : f.write(' OR ')
+        end
+      else
+        content.each do |sp|
+          sp_id_array = path_to_id(sp)
+
+          sp_id_array.each_with_index do |id, index|
+            f.write("\"id\" = #{id}")
+            index == sp_id_array.size - 1 ? f.write("\n") : f.write(' OR ')
+          end
+        end
+      end
+    end
   end
 
   def path_to_id(path)
@@ -18,7 +50,7 @@ module OutputUtil
   end
 
   def filter_skyline(skyline_path)
-    sort_result  = sort_by_dim(skyline_path)
+    sort_result = sort_by_dim(skyline_path)
 
     skyline_path_set = get_skyline_path_ids(sort_result)
     reslut = filter_array_top_k(skyline_path_set, 5) # Top 5 skyline paths
@@ -61,18 +93,18 @@ module OutputUtil
   end
 
   def split_path_ids(target_paths)
-    target_paths.map! {|path| path.split("_")}
-    target_paths.map! do |skyline_path|
-      skyline_path.shift # shift the "path"
+    skyline_paths = target_paths.map {|path_ids, path_values| path_ids.to_s.split("_")}
+    skyline_paths.map! do |skyline_path|
+      # skyline_path.shift # shift the "path"
       skyline_path.map(&:to_i)
     end
-    target_paths
+    skyline_paths
   end
 
   def sum_best_path(paths)
     result_path = []
     paths.each do |path|
-      result_path << path.inject(&:+)
+      result_path << attrs_in(path).inject(&:+)
     end
 
     paths[result_path.index(result_path.min)]

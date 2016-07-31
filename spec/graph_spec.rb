@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../structure/graph'
 
-test_edges = File.read('./salu-data/salu_edge_160203_450mm_z.txt')
+test_edges = File.read('./salu-data/salu_edge_160203_450_z.txt')
 test_nodes = File.read('./salu-data/salu_node_160203.txt')
 
 TEST_SKYLINE_ATTR_HASH = {
@@ -128,14 +128,6 @@ describe Graph do
             ["d", "b", "a", "c", "e"],
             ["d", "e", "b", "c", "a"]
           ])
-      end
-    end
-  end
-
-  describe '#sum_best_path 'do
-    context '(TEST_SKYLINE_ATTR_ARRAY)' do
-      it 'should be [8, 3, 2, 1]' do
-        expect(g.sum_best_path(TEST_SKYLINE_ATTR_ARRAY)).to match_array([8, 3, 2, 1])
       end
     end
   end
