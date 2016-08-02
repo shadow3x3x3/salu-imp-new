@@ -1,0 +1,20 @@
+<div>
+  <h1>計算結果<h1>
+  <% @result.each do |r| %>
+    <%= r %><br>
+  <% end %>
+</div>
+
+
+<div class="col-md-6">
+  <a href="/download/<%= @filename %>" class="btn btn-primary">下載所有skyline path</a>
+  <a href="/download/<%= @filename_5 %>" class="btn btn-primary">下載Top 5 skyline path</a>
+  <a href="/download/<%= @filename_sum %>" class="btn btn-primary">下載總和最好 skyline path</a>
+  <a href="/" class="btn btn-default">返回</a>
+</div>
+
+<style media="screen" type="text/css">
+  a {
+    margin-left: 15px;
+  }
+</style>
