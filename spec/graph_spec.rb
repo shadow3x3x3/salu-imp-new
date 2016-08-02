@@ -61,6 +61,16 @@ TEST_SKYLINE_ATTR_ARRAY = [
 describe Graph do
   let(:g) { Graph.new(raw_edges: test_edges, raw_nodes: test_nodes) }
 
+  describe '#initialize' do
+    context '(edge_attrs: [10, 4, 1], times: [2, 4, 1])' do
+      it 'edges attrs should be [20, 16, 1]' do
+        edges = File.read('./test-data/test-edge.txt')
+        test_g = Graph.new(raw_edges: edges, dim_times_array: [2, 4, 1])
+        expect(test_g.edges.first.attrs).to eq([20, 16, 1])
+      end
+    end
+  end
+
   describe '#path_to_id' do
     context '([1, 5, 6, 11])' do
       it 'should be get[4, 3, 30]' do
