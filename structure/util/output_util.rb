@@ -14,7 +14,7 @@ module OutputUtil
   end
 
   def write(src, dst, content, type)
-    File.open("../output/#{type}_#{src}to#{dst}_#{@distance_limit}_limit_result.txt", "w") do |f|
+    File.open("./output/#{type}_#{src}to#{dst}_#{@distance_limit}_limit_result.txt", "w") do |f|
       if type == 'sum_best'
         sp_id_array = path_to_id(content)
 
@@ -95,10 +95,9 @@ module OutputUtil
   def split_path_ids(target_paths)
     skyline_paths = target_paths.map {|path_ids, path_values| path_ids.to_s.split("_")}
     skyline_paths.map! do |skyline_path|
-      # skyline_path.shift # shift the "path"
+      skyline_path.shift # shift the "path"
       skyline_path.map(&:to_i)
     end
-    skyline_paths
   end
 
   def sum_best_path(paths)
