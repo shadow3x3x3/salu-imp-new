@@ -17,7 +17,8 @@ class Edge
   def set_attrs_times(attrs, dim_times_array)
     return attrs if dim_times_array.nil?
     unless dim_times_array.size == attrs.size
-      raise ArgumentError, "Dim Times Array size ERROR"
+      raise ArgumentError,
+        "Dim Times Array size ERROR, expect(#{attrs.size}) got(#{dim_times_array.size})"
     end
 
     attrs.map!.with_index { |a, i| a * dim_times_array[i] }
