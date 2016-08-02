@@ -25,6 +25,14 @@ describe Edge do
     end
   end
 
+  describe '#set_attrs_times' do
+    context '[1, 2, 3], [2, 4, 1]' do
+      it 'should be [2, 8, 3]' do
+        expect(edge.set_attrs_times([1, 2, 3], [2, 4, 1])).to eq([2, 8, 3])
+       end
+    end
+  end
+
   describe '#set_subspace' do
     context 'when we set subspace postions' do
       describe 'set [0, 3]' do

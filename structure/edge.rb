@@ -2,16 +2,25 @@
 class Edge
   attr_reader :id, :src, :dst, :attrs, :norm_attrs, :max_attrs, :min_attrs
 
-  def initialize(attrs)
+  def initialize(attrs, dim_times_array = nil)
     @id                 = attrs.shift.to_i
     @src                = attrs.shift.to_i
     @dst                = attrs.shift.to_i
-    @attrs              = attrs
+    @attrs              = set_attrs_times(attrs, dim_times_array)
     @norm_attrs         = @attrs.clone
     @max_attrs          = []
     @min_attrs          = []
     @max_attrs_postions = []
     @min_attrs_postions = []
+  end
+
+  def set_attrs_times(attrs, dim_times_array)
+    return attrs if dim_times_array.nil?
+    unless dim_times_array.size == attrs.size
+      raise ArgumentError, "Dim Times Array size ERROR"
+    end
+
+    attrs.map!.with_index { |a, i| a * dim_times_array[i] }
   end
 
   def set_subspace(postions)
