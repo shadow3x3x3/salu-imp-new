@@ -16,7 +16,7 @@ class Graph
     @edges = []
     initialize_nodes(raw_nodes)                           unless raw_nodes.nil?
     initialize_edges(raw_edges, params[:dim_times_array]) unless raw_edges.nil?
-    @dim = @edges.first.attrs.size
+    @dim = @edges.first.attrs.size unless @edges.empty?
   end
 
   def add_node(node)
