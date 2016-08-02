@@ -14,8 +14,8 @@ class Graph
     raw_edges = params[:raw_edges]
     @nodes = []
     @edges = []
-    initialize_nodes(raw_nodes) unless raw_nodes.nil?
-    initialize_edges(raw_edges) unless raw_edges.nil?
+    initialize_nodes(raw_nodes)                           unless raw_nodes.nil?
+    initialize_edges(raw_edges, params[:dim_times_array]) unless raw_edges.nil?
     @dim = @edges.first.attrs.size
   end
 
@@ -23,8 +23,8 @@ class Graph
     @nodes << node unless @nodes.include?(node)
   end
 
-  def add_edge(edge)
-    new_edge = edge.class == Edge ? edge : Edge.new(edge)
+  def add_edge(edge, dim_times_array)
+    new_edge = edge.class == Edge ? edge : Edge.new(edge, dim_times_array)
     @edges << new_edge unless duplicate_edge?(new_edge)
   end
 
