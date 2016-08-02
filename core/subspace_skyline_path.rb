@@ -75,5 +75,4 @@ class SubspaceSkylinePath < SkylinePath
       edges.each { |edge| edge.set_min_attrs(postions) }
     end
   end
-
 end
