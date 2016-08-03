@@ -3,10 +3,10 @@ module OutputUtil
     filter_skyline_path = if @skyline_path.size > 5
                               split_path_ids(filter_skyline(@skyline_path))
                             else
-                              result = split_path_ids(@skyline_path)
-                              write(src, dst, result, 'full')
-                              result
+                              split_path_ids(@skyline_path)
                             end
+
+    write(src, dst, filter_skyline_path, 'full')
     sum_best_skyline_path = sum_best_path(filter_skyline_path)
 
     write(src, dst, filter_skyline_path,   'top_5')
