@@ -29,7 +29,7 @@ post '/SkylinePathResult' do
   @filename_sum = "sum_best_#{src}to#{dst}_#{limit.to_f}_limit_result.txt"
 
   # Query
-  puts "A new query from #{src} to #{dst} with #{limit} times is processing"
+  puts "A new query from #{src} to #{dst} with #{limit} times is processing."
   @result = skyline_path_in_salu(dim_times_array, src.to_i, dst.to_i, limit.to_f)
   puts "Query from #{src} to #{dst} with #{limit} is done."
   erb :result
