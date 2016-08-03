@@ -59,6 +59,16 @@ def skyline_path_in_salu(dim_times_array, source, destination, constrained_times
   result
 end
 
+def set_max_attr(subspace, ssp)
+  max = []
+  max << subspace.index(4)  if subspace.include?(4)  # 易損機率(max)
+  max << subspace.index(6)  if subspace.include?(6)  # 淹水深度(max)
+  max << subspace.index(10) if subspace.include?(10) # Z易損機率(max)
+  max << subspace.index(12) if subspace.include?(12) # Z淹水深度(max)
+  ssp.set_max_attrs(max) unless max.empty?
+  ssp
+end
+
 get '/download/:filename' do |filename|
   send_file "./output/#{filename}", filename: filename, type: 'Application/octet-stream'
 end
