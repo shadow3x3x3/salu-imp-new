@@ -47,10 +47,11 @@ end
 def skyline_path_in_salu(dim_times_array, source, destination, constrained_times)
   ssp = SubspaceSkylinePath.new(raw_nodes: NODE_DATA, raw_edges: EDGE_DATA, dim_times_array: dim_times_array)
 
-  subpace = []
-  dim_times_array.each_with_index {|d, i| subpace << i unless d == 0 }
+  subspace = []
+  dim_times_array.each_with_index {|d, i| subspace << i unless d == 0 }
 
-  ssp.set_subspace_attrs(subpace)
+  ssp.set_subspace_attrs(subspace)
+  ssp = set_max_attr(subspace, ssp)
 
   result = ssp.query_skyline_path(src_id: source, dst_id: destination, limit: constrained_times)
   ssp.output_to_txt(source, destination)
