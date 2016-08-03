@@ -18,7 +18,7 @@ class Graph
     initialize_edges(raw_edges, params[:dim_times_array]) unless raw_edges.nil?
     @dim = @edges.first.attrs.size unless @edges.empty?
 
-    @neighbors_hash = set_neighbors(@edges)
+    @neighbors_hash = set_neighbors(@nodes)
   end
 
   def add_node(node)
@@ -34,9 +34,9 @@ class Graph
     @neighbors_hash[node]
   end
 
-  def set_neighbors(edges)
+  def set_neighbors(nodes)
     n_hash = {}
-    @nodes.each do |node|
+    nodes.each do |node|
       n_hash[node] = find_neighbors(node)
     end
     n_hash
@@ -49,7 +49,7 @@ class Graph
     end
     neighbors.compact!
   end
-  
+
   def check_neighbor(node, edge)
     case node
     when edge.src
