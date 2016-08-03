@@ -62,7 +62,7 @@ module OutputUtil
     index = 0
     dim   = @dim
     dim.times do
-      result_array << ori_hash.sort_by { |key, value| value[index] }
+      result_array << ori_hash.sort_by { |_key, value| value[index] }
       index += 1
     end
     result_array
