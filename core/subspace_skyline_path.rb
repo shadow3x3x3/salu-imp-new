@@ -49,7 +49,7 @@ class SubspaceSkylinePath < SkylinePath
       pass = arrived(cur, pass, cur_attrs) unless full_dominance?(cur_attrs)
       return
     end
-    find_neighbors(cur).each do |n|
+    find_neighbors_at(cur).each do |n|
       next_path_attrs = combine_aggregate(cur_attrs.clone, find_edge(cur, n))
       sky_path(n, dst, pass, next_path_attrs) if next_hop?(n, pass, next_path_attrs)
     end

@@ -59,7 +59,7 @@ class SkylinePath < Graph
       path = get_dst(cur, paths, path)
       return
     end
-    find_neighbors(cur).each do |n|
+    find_neighbors_at(cur).each do |n|
       path_recursive(n, dst, paths, path) unless path.include?(n)
     end
     path.delete(cur)
@@ -95,7 +95,7 @@ class SkylinePath < Graph
       pass = arrived(cur, pass, cur_attrs) unless full_dominance?(cur_attrs)
       return
     end
-    find_neighbors(cur).each do |n|
+    find_neighbors_at(cur).each do |n|
       next_path_attrs = cur_attrs.aggregate(attr_between(cur, n))
       sky_path(n, dst, pass, next_path_attrs) if next_hop?(n, pass, next_path_attrs)
     end
