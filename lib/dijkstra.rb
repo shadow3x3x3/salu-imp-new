@@ -53,6 +53,6 @@ module Dijkstra
   end
 
   def length_between(src, dst)
-    find_edge(src, dst).dist
+    @edges_hash[[src, dst]].attrs[0]
   end
 end
