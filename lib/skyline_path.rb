@@ -24,7 +24,7 @@ class SkylinePath < Graph
         t1 = step.report('Shorest path') do
           shorest_path = shorest_path_query(src_id, dst_id)
           @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
-          @shorest_distance = attrs_in(shorest_path).first
+          @shorest_distance = @skyline_path[path_to_sym(shorest_path)].first
         end
         t2 = step.report('SkyPath') do
           sky_path(src_id, dst_id)
@@ -86,7 +86,7 @@ class SkylinePath < Graph
   end
 
   def attr_between(src, dst)
-    find_edge(src, dst).attrs
+    @edges_hash[[src, dst]].attrs
   end
 
   def sky_path(cur, dst, pass = [], cur_attrs = Array.new(@dim, 0))
