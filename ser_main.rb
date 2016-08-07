@@ -6,8 +6,10 @@ require_relative 'core/subspace_skyline_path'
 
  set :server, :thin
 
-nodes_path = 'salu-data/salu_node_160203.txt'
-edges_path = 'salu-data/salu_edge_160203_450_z.txt'
+# nodes_path = 'salu-data/salu_node_160203.txt'
+# edges_path = 'salu-data/salu_edge_160203_450_z.txt'
+nodes_path = 'test-data/test-node.txt'
+edges_path = 'test-data/test-edge.txt'
 
 EDGE_DATA = File.read(edges_path)
 NODE_DATA = File.read(nodes_path)
