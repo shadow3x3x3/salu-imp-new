@@ -1,7 +1,10 @@
 # coding: utf-8
 require 'sinatra'
 require 'tilt/erb'
+require 'thin'
 require_relative 'core/subspace_skyline_path'
+
+ set :server, :thin
 
 nodes_path = 'salu-data/salu_node_160203.txt'
 edges_path = 'salu-data/salu_edge_160203_450_z.txt'
