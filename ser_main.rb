@@ -3,8 +3,8 @@ require 'sinatra'
 require 'tilt/erb'
 require_relative 'core/subspace_skyline_path'
 
-nodes_path = 'salu-data/salu_node_160203.txt'
-edges_path = 'salu-data/salu_edge_160203_450_z.txt'
+nodes_path = 'salu-data/salu_node_830.txt'
+edges_path = 'salu-data/salu_edge_830.txt'
 label_path = 'salu-data/salu_label.txt'
 
 EDGE_DATA = File.read(edges_path)
@@ -14,6 +14,8 @@ labels = []
 File.open(label_path, "r:UTF-8") do |f|
    f.each_line { |line| labels << line }
 end
+
+MAX_LABEL = [4, 7, 11, 13, 17, 19]
 
 get '/' do
   @title = '沙鹿地區淹水逃生路線模擬'
@@ -27,8 +29,6 @@ post '/SkylinePathResult' do
   src   = params[:source]
   dst   = params[:destination]
   limit = params[:limit]
-  # TODO more dims processing
-  puts get_dims(params)
 
   dim_times_array = get_dims(params)
 
@@ -46,8 +46,8 @@ end
 
 def get_dims(params)
   dim_times_array = []
-  1.upto(13) do |dim|
-    sym = "dim_#{dim}".to_sym
+  1.upto(21) do |dim|
+    sym = "dim_#{dim}_input".to_sym
     dim_times_array << params[sym].to_f
   end
   dim_times_array
@@ -58,6 +58,9 @@ def skyline_path_in_salu(dim_times_array, source, destination, constrained_times
 
   subspace = []
   dim_times_array.each_with_index {|d, i| subspace << i unless d == 0 }
+  raise "No attributes selected! Please try again." if subspace.empty?
+
+  puts "Subspace setting: #{subspace}"
 
   ssp.set_subspace_attrs(subspace)
   ssp = set_max_attr(subspace, ssp)
@@ -69,11 +72,12 @@ def skyline_path_in_salu(dim_times_array, source, destination, constrained_times
 end
 
 def set_max_attr(subspace, ssp)
+
   max = []
-  max << subspace.index(4)  if subspace.include?(4)  # 易損機率(max)
-  max << subspace.index(6)  if subspace.include?(6)  # 淹水深度(max)
-  max << subspace.index(10) if subspace.include?(10) # Z易損機率(max)
-  max << subspace.index(12) if subspace.include?(12) # Z淹水深度(max)
+
+  MAX_LABEL.each { |i| max << subspace.index(i) if subspace.include?(i) }
+
+  puts "max Subspace setting: #{max}"
   ssp.set_max_attrs(max) unless max.empty?
   ssp
 end
