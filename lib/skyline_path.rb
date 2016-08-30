@@ -23,6 +23,7 @@ class SkylinePath < Graph
       Benchmark.benchmark(CAPTION, 22, FORMAT, 'total:') do |step|
         t1 = step.report('Shorest path') do
           shorest_path = shorest_path_query(src_id, dst_id)
+          raise "Can't find any road between #{src_id} and #{dst_id}" if shorest_path.nil?
           @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
           @shorest_distance = @skyline_path[path_to_sym(shorest_path)].first
         end
@@ -33,7 +34,7 @@ class SkylinePath < Graph
       end
     else
       shorest_path = shorest_path_query(src_id, dst_id)
-      raise "Can't find any road between #{src_id} and #{dst_id}"  if shorest_path.nil?
+      raise "Can't find any road between #{src_id} and #{dst_id}" if shorest_path.nil?
       @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
       @shorest_distance = attrs_in(shorest_path).first
       sky_path(src_id, dst_id)
