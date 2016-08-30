@@ -86,21 +86,19 @@
 
 </script>
 <script type="text/javascript">
-$(function() {
-  $('#start').click(function() {
-    $.blockUI({
-      message: "<h3>計算中，請稍後...<h3>",
-      css: {
-          border: 'none',
-          padding: '5px',
-          'background-color': 'transparent',
-          '-webkit-border-radius': '10px',
-          '-moz-border-radius': '10px',
-          opacity: .6,
-          color: '#fff',
-          cursor: 'wait'
-      }
-    });
+$('#start').click(function() {
+  $.blockUI({
+    message: "<h3>計算中，請稍後...<h3>",
+    css: {
+      border: 'none',
+      padding: '5px',
+      'background-color': 'transparent',
+      '-webkit-border-radius': '10px',
+      '-moz-border-radius': '10px',
+      opacity: .6,
+      color: '#fff',
+      cursor: 'wait'
+    }
   });
 });
 </script>
