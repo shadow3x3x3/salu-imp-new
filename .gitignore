@@ -52,3 +52,4 @@ build-iPhoneSimulator/
 # Salu IMP Data
 salu-data/
 output/
+/full_testing.rb
