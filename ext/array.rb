@@ -2,6 +2,10 @@
 class Array
   # dominate function in skyline for array
   def dominate?(array)
+    unless size == array.size
+      raise ArgumentError,
+        "size dosen't match, excpet (#{size}) got (#{array.size})"
+    end
     flag       = 0
     check_flag = size
     each_with_index do |attr, index|

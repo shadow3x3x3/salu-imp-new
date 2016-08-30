@@ -6,11 +6,11 @@
       <h3>設定起訖點與倍數</h3>
       <div class="form-group">
         <label for="source">起點</label>
-        <input type="number" class="form-control" id="source" name="source" min="0">
+        <input type="number" class="form-control" id="source" name="source" min="0" value=1082>
       </div>
       <div class="form-group">
         <label for="destination">終點</label>
-        <input type="number" class="form-control" id="destination" name="destination" min="0">
+        <input type="number" class="form-control" id="destination" name="destination" min="0" value=2209>
       </div>
       <div class="form-group">
         <label for="destination">限制倍數</label>
@@ -26,31 +26,31 @@
       <% dim_num = 0 %>
       <div class="form-group">
         <label for="destination">長度</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=1>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=1 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">等級</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">人口密度</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">易損機率</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">易損機率(max)</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">淹水深度</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">淹水深度(max)</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
     </div>
 
@@ -58,33 +58,31 @@
       <h3>標準化參數設定</h3>
       <div class="form-group">
         <label for="destination">Z長度</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">Z人口密度</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">Z易損機率</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">Z易損機率(max)</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">Z淹水深度</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
       <div class="form-group">
         <label for="destination">Z淹水深度(max)</label>
-        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0>
+        <input type="number" class="form-control" id="dim_<%= dim_num +=1 %>" name="dim_<%= dim_num %>" min="0" value=0 step="0.000001">
       </div>
     </div>
   </form>
 </div>
-
-<script src="javascript/salu-map.js" type="text/javascript">
 
 </script>
 <script type="text/javascript">

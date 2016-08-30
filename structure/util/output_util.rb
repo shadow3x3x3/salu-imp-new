@@ -62,7 +62,7 @@ module OutputUtil
     index = 0
     dim   = @dim
     dim.times do
-      result_array << ori_hash.sort_by { |key, value| value[index] }
+      result_array << ori_hash.sort_by { |_key, value| value[index] }
       index += 1
     end
     result_array
@@ -93,7 +93,7 @@ module OutputUtil
   end
 
   def split_path_ids(target_paths)
-    skyline_paths = target_paths.map {|path_ids, path_values| path_ids.to_s.split("_")}
+    skyline_paths = target_paths.map {|path_ids, _path_values| path_ids.to_s.split("_")}
     skyline_paths.map! do |skyline_path|
       skyline_path.shift # shift the "path"
       skyline_path.map(&:to_i)

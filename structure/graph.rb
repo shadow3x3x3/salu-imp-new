@@ -37,7 +37,7 @@ class Graph
 
   def set_neighbors
     n_hash = {}
-    @nodes.each do |node|
+    nodes.each do |node|
       n_hash[node] = find_neighbors(node)
     end
     n_hash

@@ -19,7 +19,7 @@ module Dijkstra
       @previouses[n] = nil
     end
     @distances[src_id] = 0
-    @vertices = nodes.clone
+    @vertices = @nodes.clone
   end
 
   def check_shortest

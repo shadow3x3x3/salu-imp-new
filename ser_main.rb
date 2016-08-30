@@ -58,7 +58,7 @@ def skyline_path_in_salu(dim_times_array, source, destination, constrained_times
   ssp.set_subspace_attrs(subspace)
   ssp = set_max_attr(subspace, ssp)
 
-  result = ssp.query_skyline_path(src_id: source, dst_id: destination, limit: constrained_times)
+  result = ssp.query_skyline_path(src_id: source, dst_id: destination, limit: constrained_times, evaluate: true)
   ssp.output_to_txt(source, destination)
 
   result

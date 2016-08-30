@@ -40,7 +40,7 @@ class SubspaceSkylinePath < SkylinePath
 
   def attr_between(src, dst)
     target_edge = @edges_hash[[src, dst]]
-    target_edge.attrs + target_edge.min_attrs + target_edge.max_attrs
+    target_edge.norm_attrs + target_edge.min_attrs + target_edge.max_attrs
   end
 
   def sky_path(cur, dst, pass = [], cur_attrs = Array.new(@dim, 0))
