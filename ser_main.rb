@@ -5,13 +5,19 @@ require_relative 'core/subspace_skyline_path'
 
 nodes_path = 'salu-data/salu_node_160203.txt'
 edges_path = 'salu-data/salu_edge_160203_450_z.txt'
+label_path = 'salu-data/salu_label.txt'
 
 EDGE_DATA = File.read(edges_path)
 NODE_DATA = File.read(nodes_path)
 
+labels = []
+File.open(label_path, "r:UTF-8") do |f|
+   f.each_line { |line| labels << line }
+end
+
 get '/' do
   @title = '沙鹿地區淹水逃生路線模擬'
-
+  @label = labels
   erb :index
 end
 
@@ -21,6 +27,9 @@ post '/SkylinePathResult' do
   src   = params[:source]
   dst   = params[:destination]
   limit = params[:limit]
+  # TODO more dims processing
+  puts get_dims(params)
+
   dim_times_array = get_dims(params)
 
   # Set Files' Name
