@@ -15,7 +15,7 @@ File.open(label_path, "r:UTF-8") do |f|
    f.each_line { |line| labels << line }
 end
 
-MAX_LABEL = [4, 7, 11, 13, 17, 19]
+MAX_LABEL = [4, 6, 10 ,12, 16, 18]
 
 get '/' do
   @title = '沙鹿地區淹水逃生路線模擬'
@@ -46,7 +46,7 @@ end
 
 def get_dims(params)
   dim_times_array = []
-  1.upto(21) do |dim|
+  0.upto(18) do |dim|
     sym = "dim_#{dim}_input".to_sym
     dim_times_array << params[sym].to_f
   end

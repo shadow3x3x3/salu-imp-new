@@ -23,11 +23,16 @@
 
     <div class="form-group col-md-2 row col-md-offset-1">
       <h3>參數設定</h3>
-      <% 0.upto(8) do |i| %>
+      <div class="form-group">
+        <label>距離</label>
+        <input type="number" class="form-control" id="dim_<%= 0 %>_input" name="dim_<%= 0 %>_input" min="1" value=1 step="0.000001"/>
+      </div>
+      <% 1.upto(6) do |i| %>
       <div class="form-group">
         <label>
           <input type="checkbox" class="dims-check" id="dim_<%= i %>" />
-          <%= @label[i] %></label>
+          <%= @label[i] %>
+        </label>
         <input type="number" class="form-control" id="dim_<%= i %>_input" name="dim_<%= i %>_input" disabled="disabled" min="0" value=0 step="0.000001"/>
       </div>
       <% end %>
@@ -35,11 +40,12 @@
 
     <div class="form-group col-md-2 row col-md-offset-1">
       <h3>標準化參數 Z</h3>
-      <% 9.upto(14) do |i| %>
+      <% 7.upto(12) do |i| %>
       <div class="form-group">
         <label>
           <input type="checkbox" class="dims-check" id="dim_<%= i %>" />
-          <%= @label[i] %></label>
+          <%= @label[i] %>
+        </label>
         <input type="number" class="form-control" id="dim_<%= i %>_input" name="dim_<%= i %>_input" disabled="disabled" min="0" value=0 step="0.000001"/>
       </div>
       <% end %>
@@ -47,7 +53,7 @@
 
     <div class="form-group col-md-2 row col-md-offset-1">
       <h3>標準化參數 Z'</h3>
-      <% 16.upto(20) do |i| %>
+      <% 13.upto(18) do |i| %>
       <div class="form-group">
         <label>
           <input type="checkbox" class="dims-check" id="dim_<%= i %>" />
