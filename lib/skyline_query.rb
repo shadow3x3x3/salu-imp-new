@@ -1,9 +1,7 @@
 # For Skyline Query
 module SkylineQuery
-
   def brute_force(skyline_hash)
     data_check(skyline_hash)
-
     result = {}
 
     skyline_hash.each do |k, v|
@@ -16,11 +14,9 @@ module SkylineQuery
     result
   end
 
-
   def data_check(skyline_hash)
     unless skyline_hash.class == Hash
       raise ArgumentError, "need to Hash (ID: attributes)"
     end
   end
-
 end
