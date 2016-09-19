@@ -45,12 +45,6 @@ class SkylinePath < Graph
     @skyline_path
   end
 
-  def get_all_paths(params)
-    src = params[:src_id]
-    dst = params[:dst_id]
-    find_paths(src, dst)
-  end
-
   def find_paths(src, dst)
     path_recursive(src, dst, {}, [])
   end
