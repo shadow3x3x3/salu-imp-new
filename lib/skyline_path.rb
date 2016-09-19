@@ -16,7 +16,7 @@ class SkylinePath < Graph
     @part_skyline_path = {}
   end
 
-  def query_skyline_path(src_id: nil, dst_id: nil, limit: nil, evaluate: false)
+  def query_skyline_path(src_id: nil, dst_id: nil, limit: 10, evaluate: false)
     query_check(src_id, dst_id)
     if evaluate
       Benchmark.benchmark(CAPTION, 22, FORMAT, 'total:') do |step|
