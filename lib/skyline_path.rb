@@ -17,7 +17,6 @@ class SkylinePath < Graph
   end
 
   def query_skyline_path(src_id: nil, dst_id: nil, limit: nil, evaluate: false)
-    @distance_limit = limit
     query_check(src_id, dst_id)
     if evaluate
       Benchmark.benchmark(CAPTION, 22, FORMAT, 'total:') do |step|
@@ -26,6 +25,7 @@ class SkylinePath < Graph
           raise "Can't find any road between #{src_id} and #{dst_id}" if shorest_path.nil?
           @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
           @shorest_distance = @skyline_path[path_to_sym(shorest_path)].first
+          @limit = @shorest_distance * limit
         end
         t2 = step.report('SkyPath') do
           sky_path(src_id, dst_id)
@@ -36,7 +36,8 @@ class SkylinePath < Graph
       shorest_path = shorest_path_query(src_id, dst_id)
       raise "Can't find any road between #{src_id} and #{dst_id}" if shorest_path.nil?
       @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
-      @shorest_distance = attrs_in(shorest_path).first
+      @shorest_distance = @skyline_path[path_to_sym(shorest_path)].first
+      @limit = @shorest_distance * limit      
       sky_path(src_id, dst_id)
     end
 
@@ -137,7 +138,7 @@ class SkylinePath < Graph
   end
 
   def out_of_limit?(distance)
-    distance > @shorest_distance * @distance_limit ? true : false
+    distance > @LIMIT ? true : false
   end
 
   def partial_dominance?(target, path_attrs)
