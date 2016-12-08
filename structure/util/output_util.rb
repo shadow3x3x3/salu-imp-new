@@ -14,7 +14,7 @@ module OutputUtil
   end
 
   def write(src, dst, content, type)
-    File.open("./output/#{type}_#{src}to#{dst}_#{@distance_limit}_limit_result.txt", "w") do |f|
+    File.open("./output/#{type}_#{src}to#{dst}_#{@limit_times}_limit_result.txt", "w") do |f|
       if type == 'sum_best'
         sp_id_array = path_to_id(content)
 

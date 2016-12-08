@@ -25,6 +25,7 @@ class SkylinePath < Graph
           raise "Can't find any road between #{src_id} and #{dst_id}" if shorest_path.nil?
           @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
           @shorest_distance = @skyline_path[path_to_sym(shorest_path)].first
+          @limit_times = limit
           @limit = @shorest_distance * limit
         end
         t2 = step.report('SkyPath') do
@@ -37,7 +38,7 @@ class SkylinePath < Graph
       raise "Can't find any road between #{src_id} and #{dst_id}" if shorest_path.nil?
       @skyline_path[path_to_sym(shorest_path)] = attrs_in(shorest_path)
       @shorest_distance = @skyline_path[path_to_sym(shorest_path)].first
-      @limit = @shorest_distance * limit      
+      @limit = @shorest_distance * limit
       sky_path(src_id, dst_id)
     end
 
